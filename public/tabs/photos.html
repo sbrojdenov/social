@@ -1,0 +1,41 @@
+<div class="row" ng-controller = "photoCtrl"  ng-init="initFirst()">
+
+    <div class="col-lg-12">
+        <span class="btn btn-default btn-file">
+            Upload image <input id="file-input" type="file" file-model='file' onchange="angular.element(this).scope().uploadFile()" /> 
+        </span>
+    </div>
+
+    <div ng-repeat="x in images" class="col-lg-3 col-md-4 col-xs-6 thumb" >
+        <a class="thumbnail" href="#">
+            <img class="img-responsive" ng-click="getUrl(x.user_id ,x.photos)" data-toggle="modal" data-target="#myModal" src="<% 'upload' + '/' + x.user_id + '/' + 'thumb_'+ x.photos %>" alt="">
+        </a>  
+
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body row" >
+                    <div class="col-lg-9">
+                        <img src="<% activeUrl %>" width='100%'/>
+                    </div>
+                    <div class="col-lg-3">
+                        <p>asdasdasd</p>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

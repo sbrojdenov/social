@@ -1,0 +1,22 @@
+<ng-include src="'step.html'"></ng-include>
+<div class="col-md-6  col-md-offset-3"><h2>Education and work</h2></div>
+<div class="col-md-6  col-md-offset-3">
+    <form role="form"  name="myform">
+        <div class="form-group">
+            <label for="name">Work</label>
+            <input type="text" name="work"  ng-model="work" ng-value="education.work" ng-maxlength="20"  class="form-control"  ng-class="myform.work.$valid ? 'green:' : 'red'" id="work">
+        </div>
+        <div class="form-group">
+            <label for="last">College *</label>
+            <input type="text" name="gollege"  ng-minlength="3" ng-maxlength="25" ng-model="college" ng-value="education.college" class="form-control"  ng-class="myform.gollege.$valid ? 'green:' : 'red'" id="lastname">
+        </div>
+
+        <div class="form-group">
+            <label for="last">Hight school *</label>
+            <input type="text" name="school"  ng-minlength="2" ng-maxlength="20" ng-model="hight" ng-value="education.hight" class="form-control"  ng-class="myform.school.$valid ? 'green:' : 'red'" id="birthday">
+        </div>             
+         <a href="#/" class="btn btn-primary btn-sm" >Prev</a>
+        <a href="#third" ng-disabled="myform.gollege.$invalid || myform.school.$invalid" ng-click="myform.$valid && addEducation()" class="btn btn-primary btn-sm" >Next</a>
+
+    </form>
+</div>

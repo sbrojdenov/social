@@ -1,0 +1,26 @@
+<ng-include src="'step.html'"></ng-include>
+<div class="col-md-6  col-md-offset-3"><h2>Interest and hobbies</h2></div>
+<div class="col-md-6  col-md-offset-3">
+    <form role="form" name="myform">
+        <div class="form-group">
+            <label for="name">Favorite Sport</label>
+            <input type="text" name="sport" ng-maxlength="20" ng-model="sport"  ng-value="interest.sport" class="form-control" ng-class="myform.sport.$valid ? 'green:' : 'red'" id="work">
+        </div>
+        <div class="form-group">
+            <label for="last">Movies</label>
+            <input type="text" name="movie" ng-maxlength="25" ng-model="movie" ng-value="interest.movie" class="form-control" ng-class="myform.movie.$valid ? 'green:' : 'red'" id="lastname">
+        </div>
+
+        <div class="form-group">
+            <label for="last">Favorite Book</label>
+            <input type="text" name="book" ng-maxlength="20" ng-model="book" ng-value="interest.book" class="form-control" ng-class="myform.book.$valid ? 'green:' : 'red'" id="birthday">
+        </div>
+
+        <div class="form-group">
+            <label for="last">Favorite Club</label>
+            <input type="text" name="club" ng-maxlength="20" ng-model="club" ng-value="interest.club" class="form-control" ng-class="myform.club.$valid ? 'green:' : 'red'" id="birthday">
+        </div> 
+         <a href="#second" class="btn btn-primary btn-sm" >Prev</a>
+        <a href="#fourth" ng-disabled="myform.sport.$invalid || myform.movie.$invalid || myform.book.$invalid || myform.club.$invalid" ng-click="myform.$valid && addInterest()" class="btn btn-primary btn-sm" >Next</a>
+    </form>
+</div>

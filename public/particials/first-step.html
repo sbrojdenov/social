@@ -1,0 +1,44 @@
+<ng-include src="'step.html'"></ng-include>
+
+<div class="col-md-6  col-md-offset-3"><h2>General</h2></div>
+<div class="col-md-6  col-md-offset-3">
+    <form role="form" name="myform" data-my-form="">
+
+        <div class="form-group">
+            <label for="email">Email * <span class="has-error" ng-if="exist">You shold provide unique email adress!</span></label>
+            <input type="email" name="email"  ng-model="email" ng-blur="emailBlurred(myform.email.$valid)"  ng-value="info.email" required ng-minlength="4" ng-maxlength="25" class="form-control"  ng-class="myform.email.$valid ? 'green:' : 'red'" id="name">
+        </div>
+        
+
+        <div class="form-group">
+            <label for="name">Password *</label>
+            <input type="<% inputType %>" name="password" ng-model="password" required ng-minlength="5" ng-maxlength="17" ng-value="info.password" class="form-control"  ng-class="myform.password.$valid ? 'green:' : 'red'" id="name" >
+            <label class="checkbox-inline"><input type="checkbox" ng-click="hideShowPassword()" value=""><span  ng-if="inputType == 'password'">Show password</span><span  ng-if="inputType == 'text'">Hide password</span></label>
+        </div>
+        <div class="form-group">
+            <label for="name">Name *</label>
+            <input type="text" name="name" ng-model="name" ng-value="info.name" ng-minlength="3" ng-maxlength="20" class="form-control" required  ng-class="myform.name.$valid ? 'green:' : 'red'" id="name">
+        </div>
+
+
+        <div class="form-group">
+            <label for="last">Birthday *</label>
+            <div class='input-group date'>
+                <datepicker  date-format="dd/MM/yyyy">
+                    <input name="birthday" ng-model="date"  ng-class="myform.birthday.$valid ? 'green:' : 'red'"  type='text' ng-value="info.birthday" required class="form-control" />
+                </datepicker>
+                <span class="input-group-addon">
+                    <span  class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="last">Gender *</label>
+          
+            <select class="form-control" name="gender"  ng-class="myform.gender.$valid ? 'green:' : 'red'" data-ng-options="o.label for o in items" required  data-ng-model="selected"></select>
+        </div>
+
+        <a href="#second" ng-disabled="myform.email.$invalid || myform.password.$invalid || myform.birthday.$invalid || myform.gender.$invalid" ng-click="myform.$valid && addGeneral()" class="btn btn-primary btn-sm" >Next</a>
+
+    </form>
+</div>
