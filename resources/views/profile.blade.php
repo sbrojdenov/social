@@ -32,7 +32,7 @@
                         <li class="small-text"><a href="#">Stefan</a></li>                        
                     </ul>                  
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="small-text"><a href="#">Match 10</a></li>
+                        <li class="small-text"><a href="/match">Match 10</a></li>
                         <li class="small-text"><a href="#"><span class="glyphicon glyphicon-user"></span>  Logout</a> </li> 
                     </ul>
                 </div>
@@ -52,9 +52,9 @@
 
 
     <script src="js/jquery.js"></script>
-    <script src="{{URL::asset('chat/socket.io.js')}}"></script>
+   <script src="{{URL::asset('chat/socket.io.js')}}"></script>
     <script>
-            var socket = io();
+           var socket = io.connect('localhost:3000');
     </script>
     <script>
 

@@ -12,12 +12,12 @@ class CreateHobbyTable extends Migration
      */
     public function up()
     {
-        Schema::create('hobby', function (Blueprint $table) {
+        Schema::create('hobbies', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('sport');
-            $table->string('movie');
-            $table->string('book');
-            $table->string('club');
+            $table->string('sport')->nullable();
+            $table->string('movie')->nullable();
+            $table->string('book')->nullable();
+            $table->string('club')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateHobbyTable extends Migration
      */
     public function down()
     {
-        Schema::drop('hobby');
+        Schema::drop('hobbies');
     }
 }

@@ -4,18 +4,18 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div>
-                    <img src="img/m.jpg" widht="70px" height="50px" />
-                    <span class="right-name"><strong><a>Ivan Petrov</a></strong></span>
+                    <img ng-click="getMessages()" src="img/m.jpg" widht="70px" height="50px" />
+                    <span class="right-name"><strong><a ng-click="getMessages()">Ivan Petrov</a></strong></span>
                     <hr>
                 </div>
                 <div>
-                    <img src="img/m.jpg" widht="70px" height="50px" />
-                    <span class="right-name"><strong><a>Ivan Petrov</a></strong></span>
+                    <img ng-click="getMessages()" src="img/m.jpg" widht="70px" height="50px" />
+                    <span class="right-name"><strong><a ng-click="getMessages()">Ivan Petrov</a></strong></span>
                     <hr>
                 </div>
                 <div>
-                    <img src="img/m.jpg" widht="70px" height="50px" />
-                    <span class="right-name"><strong><a>Ivan Petrov</a></strong></span>
+                    <img ng-click="getMessages()" src="img/m.jpg" widht="70px" height="50px" />
+                    <span class="right-name"><strong><a ng-click="getMessages()">Ivan Petrov</a></strong></span>
                     <hr>
                 </div>
                 <div>
@@ -30,15 +30,25 @@
     <div class="col-md-8">
         <div class="panel panel-default">
             <div class="panel-body" >
-                <ul id="messages"></ul>
+                <div  id="conversetion-container">
+                    <ul id="conversetion">
+                        <li ng-repeat="msg in myData">
+                            <a><img ng-src="msg.photo" width='30px' height='40px' /><span class='from'><% msg.name %></span></a>
+                        </li>
+                    </ul>
+                </div>
                 <form id="myForm">
                     <span id="notifyUser"></span>
-                    <input type="hidden" id="user" value="Stefan" />
-                    <input id="m" onkeyup="notifyTyping();" autocomplete="off" /><button id="btnDel">Send</button>
+                    <input type="hidden" id="user" value="Ivan2" />
+                    <input type="hidden" id="recipient" value="ivan@ivanov@abv.bg" />
+                    <input type="hidden" id="email" value="stefn2@abv.bg" />
+                    <input type="hidden" id="photo" value="upload/22/thumb_22072.jpg" />
+                    <input id="m" class="form-control" onkeyup="notifyTyping();" autocomplete="off" /><button class="btn btn-primary btn-block" id="btnDel">Send</button>
                 </form>
-
             </div>
         </div>
+        
+        
     </div>
 </div>
 
@@ -46,7 +56,7 @@
 
             var socket = io('http://localhost:3000/');
             $('#myForm').submit(function () {
-                socket.emit('chat message', $('#user').val(), $('#m').val());
+                socket.emit('chat message', $('#user').val(), $('#m').val(),$('#photo').val(),$('#email').val(),$('#recipient').val());
                 $('#m').val('');
                 return false;
             });
@@ -56,9 +66,11 @@
                 socket.emit('notifyUser', user);
             }
 
-            socket.on('chat message', function (from, msg) {
-                $('#messages').append($('<li>').text(from));
-                $('#messages').append($('<li>').text(msg));
+            socket.on('chat message', function (from, msg,photo) {
+                $('#messages').append('<li>'+ '<a>'+ "<img width='30px' height='40px' src="+photo+ '/>'+'</a>' + "<span class='from'>"+ from+ '<span>'+'</li>');
+                $('#conversetion').append('<li>'+ '<a>'+ "<img width='30px' height='40px' src="+photo+ '/>'+'</a>' + "<span class='from'>"+ from+ '<span>'+'</li>');
+                $('#conversetion').append($('<li>').text(msg));
+                 
             });
 
             socket.on('notifyUser', function (user) {

@@ -10,6 +10,9 @@ var Schema = mongoose.Schema;
 var chatSchema = new Schema({
     name: String,
     msg: String,
+    avatar: String,
+    email: String,
+    recipient: String,
     created_at: Date
 });
 
@@ -31,15 +34,15 @@ io.on('connection', function (socket) {
 });
 
 io.on('connection', function (socket) {
-    socket.on('chat message', function (from, msg) {
-        var message = new Chat({name: from, msg: msg, created_at: new Date()});
+    socket.on('chat message', function (from, msg,photo,email,recipient) {
+        var message = new Chat({name: from, msg: msg, avatar: photo,email: email, recipient:recipient, created_at: new Date()});
         message.save(function (err) {
             if (err)
                 console.log(err);
             else
                 console.log(message);
         });
-        io.emit('chat message', from, msg);
+        io.emit('chat message', from, msg,photo);
     });
 
     socket.on('notifyUser', function (user) {

@@ -97,7 +97,6 @@ profileApp.controller('photoCtrl', ['$scope', 'fileUpload', '$http', function ($
             });
         };
 
-
         $scope.uploadFile = function () {
 
             var listener = $scope.$watch('file', function (newVal) {
@@ -107,7 +106,7 @@ profileApp.controller('photoCtrl', ['$scope', 'fileUpload', '$http', function ($
 
                     fileUpload.uploadFileToUrl($scope.file, uploadUrl).then(function (res) {
                         //$scope.thumbs = fileUpload.fileList.path;
-                         $scope.initFirst();
+                        $scope.initFirst();
                     }), function (err) {
 
                     }
@@ -118,18 +117,25 @@ profileApp.controller('photoCtrl', ['$scope', 'fileUpload', '$http', function ($
             setTimeout(function () {
                 listener();
             }, 1000);
-           
+
         };
-        
-        $scope.getUrl=function(id,photo){
-            
-           $scope.activeUrl= "upload"+"/"+id+"/"+"thumb_"+photo;
+
+        $scope.getUrl = function (id, photo) {
+
+            $scope.activeUrl = "upload" + "/" + id + "/" + "thumb_" + photo;
         }
 
     }]);
 
 
-profileApp.controller('messageCtr', ['$scope', function ($scope) {
+profileApp.controller('messageCtr', ['$scope', '$http', function ($scope, $http) {
+   
+        $scope.getMessages = function () {
+            $http.get("getmessage/ivan@ivanov@abv.bg").then(function (response) {
+                $scope.myData = response.data;
+                console.log($scope.myData);
 
+            });
+        }
 
     }]);

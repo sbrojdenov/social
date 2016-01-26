@@ -145,8 +145,10 @@ myApp.controller('FoodController', ['$scope', '$location', '$localStorage', '$ht
             $http.post('/create', [
                 $localStorage.general, $localStorage.education, $localStorage.interest, $localStorage.location, $localStorage.vision
             ]).success(function (data, status, headers, config) {
+                     if(data.perfect){
                      $localStorage.$reset();
                      $window.location.href = '/me';
+                 }
              
             });
         };

@@ -14,30 +14,33 @@
 
 
 Route::get('/','HomeController@index');
+Route::get('/home','HomeController@profile');
 Route::post('/avatar/{id?}','MeController@upload');
 Route::get('/thumbs','MeController@images');
 Route::get('/profile','ProfileController@index');
 Route::post('/create','HomeController@create');
 Route::get('/me','MeController@index');
+Route::get('/match','MatchController@index');
 Route::post('/email','HomeController@email');
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
-Route::get('/sega', function()
-{
-    $img = Image::make('img/f.jpg')->resize(400, 300);
 
-    return $img->response('jpg');
-    
-    //$img->save('public/bar.jpg');
-});
 
 Route::get('/mongodb', function()
-{
-    $chat= \App\Chatmongodb::all();
+{    
+    $chat= \App\Chatmongodb::groupBy('name','avatar','email')->get();
     return($chat);
 });
+
+Route::get('/getmessage/{recepient}', function($recepient)
+{ 
+   //$email =\Auth::user()->email;
+   $users = \App\Chatmongodb::where('email', '=','stefn2@abv.bg')->where('recipient', '=', $recepient)->get();
+   return $users;
+});
+
 
 
 

@@ -38,6 +38,6 @@ class User extends Model implements AuthenticatableContract,
     protected $hidden = ['password', 'remember_token'];
     
     public function photo(){
-        return $this->hasMany('App\Photo')->select(array('user_id', 'photos'));;
+        return $this->hasMany('App\Photo')->select(array('user_id', 'photos'));
     }
 }

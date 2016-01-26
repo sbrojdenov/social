@@ -206,8 +206,66 @@ html, body {
     display: block;
 }
 
-.right-name{
-    margin-left:20%;
+
+ul li{
+    list-style-type: none;
+}
+
+
+.from{
+    font-size:14px;
+    font-weight:bold;
+}
+
+.test{
+    position:relative;
+    bottom:50px;
+    left:10px;
     color:#286090;
     font-size:17px;
+    font-weight:bold;
+}
+
+.test:hover{
+    text-decoration: underline;
+    color:black;
+    cursor: pointer;
+}
+
+.bootom-list{
+    position:relative;
+    top:50px;
+    right:40px;
+    color:#286050;
+    font-size:17px;
+    font-weight:bold;
+
+}
+
+.bootom-list:hover{
+    text-decoration: underline;
+    color:black;
+    cursor: pointer;
+}
+
+.carousel-control.left {
+    margin-left: -45px;
+    margin-top:170px;
+    color: black;
+    font-size: 25px;
+}
+.carousel-control.right {
+    margin-right: -45px;
+    margin-top:180px;
+    font-size: 25px;
+}
+
+.carousel-control.left, .carousel-control.right {
+    background: none;
+    border: none;
+}
+
+.carouser-content{
+    font-size: 40px;
+    color: black;
 }

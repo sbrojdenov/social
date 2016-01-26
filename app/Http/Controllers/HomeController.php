@@ -12,6 +12,7 @@ use App\Location;
 use App\Look;
 
 
+
 class HomeController extends Controller {
 
     /**
@@ -39,8 +40,14 @@ class HomeController extends Controller {
       $this->saveLocation($input);
       $this->saveHobby($input);
       $this->saveLook($input);
+       $user = array(
+            'email' => $input[0]['email'],
+            'password' => $input[0]['password']
+        );
       
-      
+      if(\Auth::attempt($user)){
+           return response()->json(['perfect'=>true]);
+      }
     }
 
     /**
@@ -145,5 +152,9 @@ class HomeController extends Controller {
          $user = DB::table('users')->where('email', $input['email'])->count();
           return response()->json(['countEmail' => $user]); 
      } 
+     
+      public function profile(){
+         return redirect('me');
+    }
 
 }

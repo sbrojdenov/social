@@ -12,11 +12,11 @@ class CreateLocationTable extends Migration
      */
     public function up()
     {
-        Schema::create('location', function (Blueprint $table) {
+        Schema::create('locations', function (Blueprint $table) {
             $table->increments('id');
-            $table->char('home_town',20);
-            $table->char('current_town',20);
-            $table->char('favorite_town',20);
+            $table->char('home_town',20)->nullable();
+            $table->char('current_town',20)->nullable();
+            $table->char('favorite_town',20)->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateLocationTable extends Migration
      */
     public function down()
     {
-        Schema::drop('location');
+        Schema::drop('locations');
     }
 }

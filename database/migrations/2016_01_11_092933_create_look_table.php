@@ -12,12 +12,12 @@ class CreateLookTable extends Migration
      */
     public function up()
     {
-        Schema::create('look', function (Blueprint $table) {
+        Schema::create('looks', function (Blueprint $table) {
             $table->increments('id');
-            $table->char('height',15);
-            $table->char('eyes',15);
-            $table->char('hair',15);
-            $table->char('weight',15);
+            $table->char('height',15)->nullable();
+            $table->char('eyes',15)->nullable();
+            $table->char('hair',15)->nullable();
+            $table->char('weight',15)->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateLookTable extends Migration
      */
     public function down()
     {
-        Schema::drop('look');
+        Schema::drop('looks');
     }
 }

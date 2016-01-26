@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('password', 60);
             $table->date('birthday');
             $table->char('gender',4);
+            $table->string('session');
             $table->rememberToken();
             $table->timestamps();
         });
