@@ -17,6 +17,7 @@ class CreateEducationTable extends Migration
             $table->string('work')->nullable();
             $table->string('college')->nullable();
             $table->string('hight_school')->nullable();
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

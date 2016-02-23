@@ -17,6 +17,7 @@ class CreateLocationTable extends Migration
             $table->char('home_town',20)->nullable();
             $table->char('current_town',20)->nullable();
             $table->char('favorite_town',20)->nullable();
+             $table->integer('user_id');
             $table->timestamps();
         });
     }

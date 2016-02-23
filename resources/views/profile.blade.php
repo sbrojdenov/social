@@ -64,6 +64,7 @@
     <script src='bower_components/angular-file-model/angular-file-model.js'></script>
     <script src="{{URL::asset('js/profile.js')}}"></script>
     <script src="{{URL::asset('js/controller/about.js')}}"></script>
+     <script src="{{URL::asset('js/controller/match.js')}}"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>

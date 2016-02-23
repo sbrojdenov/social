@@ -18,6 +18,7 @@ Route::get('/home','HomeController@profile');
 Route::post('/avatar/{id?}','MeController@upload');
 Route::get('/thumbs','MeController@images');
 Route::get('/profile','ProfileController@index');
+Route::get('/getmatch','MatchController@getmatch');
 Route::post('/create','HomeController@create');
 Route::get('/me','MeController@index');
 Route::get('/match','MatchController@index');
@@ -25,7 +26,7 @@ Route::post('/email','HomeController@email');
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
-
+Route::post('updateStatus', 'MatchController@update');
 
 
 Route::get('/mongodb', function()

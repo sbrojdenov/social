@@ -18,6 +18,7 @@ class CreateLookTable extends Migration
             $table->char('eyes',15)->nullable();
             $table->char('hair',15)->nullable();
             $table->char('weight',15)->nullable();
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

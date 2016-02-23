@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Education extends Model
 {
-     protected $fillable = ['work', 'college', 'hight_school'];
+     protected $fillable = ['work', 'college', 'hight_school','user_id'];
 }

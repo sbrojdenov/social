@@ -18,6 +18,7 @@ class CreateHobbyTable extends Migration
             $table->string('movie')->nullable();
             $table->string('book')->nullable();
             $table->string('club')->nullable();
+             $table->integer('user_id');
             $table->timestamps();
         });
     }

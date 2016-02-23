@@ -35,11 +35,11 @@ class HomeController extends Controller {
      */
     public function create(Request $request) {
       $input = $request->all();
-      $this->saveUser($input);
-      $this->saveEducation($input);
-      $this->saveLocation($input);
-      $this->saveHobby($input);
-      $this->saveLook($input);
+      $uid=$this->saveUser($input);
+      $this->saveEducation($input,$uid);
+      $this->saveLocation($input,$uid);
+      $this->saveHobby($input,$uid);
+      $this->saveLook($input,$uid);
        $user = array(
             'email' => $input[0]['email'],
             'password' => $input[0]['password']
@@ -50,99 +50,57 @@ class HomeController extends Controller {
       }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request) {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id) {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id) {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id) {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id) {
-        
-    }
-
     protected function saveUser(array $input) {
-        User::create([
+        $this->getDate($input[0]['birthday']);
+        $user=User::create([
             'name' => $input[0]['name'],
             'email' => $input[0]['email'],
             'password' => bcrypt($input[0]['password']),
             'birthday' => $input[0]['birthday'],
-            'gender' => $input[0]['gender']['label']
+            'gender' => $input[0]['gender']['label'],
+            'age'=>$this->getDate($input[0]['birthday'])
         ]);
+        
+        return $user->id;
     }
 
-    protected function saveEducation(array $input) {
+    protected function saveEducation($input,$uid) {
+       
         Education::create([
             'work' => $input[1]['work'],
             'college' => $input[1]['college'],
-            'college' => $input[1]['hight'],
+            'hight_school' => $input[1]['hight'],
+            'user_id' => $uid
         ]);
     }
 
-    protected function saveHobby(array $input) {
+    protected function saveHobby($input,$uid) {
 
         Hobby::create([
             'sport' => $input[2]['sport'],
             'movie' => $input[2]['movie'],
             'book' => $input[2]['book'],
             'club' => $input[2]['club'],
+            'user_id' => $uid
         ]);
     }
 
-    protected function saveLocation(array $input) {
+    protected function saveLocation($input,$uid) {
         Location::create([
             'home_town' => $input[3]['hometown']['name'],
             'current_town' => $input[3]['current']['name'],
-            'favorite_town' => $input[3]['favorite']['name'],      
+            'favorite_town' => $input[3]['favorite']['name'],
+            'user_id' => $uid
         ]);
     }
 
-    protected function saveLook(array $input) {
+    protected function saveLook($input,$uid) {
           Look::create([
             'height' => $input[4]['height'],
             'eyes' => $input[4]['eyes'],
             'hair' => $input[4]['hair'],
             'weight' => $input[4]['weight'], 
+            'user_id' => $uid
         ]);
         
     }
@@ -155,6 +113,12 @@ class HomeController extends Controller {
      
       public function profile(){
          return redirect('me');
+    }
+    
+       protected function getDate($dob){
+         $date=explode("/",$dob); 
+         $dateDif=date("Y")-$date[2];
+         return $dateDif;
     }
 
 }

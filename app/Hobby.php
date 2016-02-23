@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Hobby extends Model
 {
-     protected $fillable = ['sport', 'movie', 'book','club'];
+     protected $fillable = ['sport', 'movie', 'book','club','user_id'];
 }
