@@ -32,6 +32,16 @@ profileApp.config(function ($routeProvider) {
                 templateUrl: 'particial-update/five.html',
                 controller: 'LookController',
             })
+            
+             .when('/all', {
+                templateUrl: 'particial-update/all.html',
+                controller: 'matchAll',
+            })
+            
+             .when('/online', {
+                templateUrl: 'particial-update/online.html',
+                controller: 'onlineCtr',
+            })
  
 });
 

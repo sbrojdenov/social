@@ -1,28 +1,15 @@
-<div class="row" ng-controller = "messageCtr">
+<div class="row" ng-controller = "messageCtr" ng-init="allMessage()">
 
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-body">
-                <div>
-                    <img ng-click="getMessages()" src="img/m.jpg" widht="70px" height="50px" />
-                    <span class="right-name"><strong><a ng-click="getMessages()">Ivan Petrov</a></strong></span>
+                
+                <div ng-repeat="user in allMeesage">
+                    <img ng-click="getMessages(user.recipient)" ng-src=" <% user.avatar %>" widht="70px" height="50px" />
+                    <span class="right-name"><strong><a ng-click="getMessages(user.recipient)"> <% user.name %></a></strong></span>
                     <hr>
                 </div>
-                <div>
-                    <img ng-click="getMessages()" src="img/m.jpg" widht="70px" height="50px" />
-                    <span class="right-name"><strong><a ng-click="getMessages()">Ivan Petrov</a></strong></span>
-                    <hr>
-                </div>
-                <div>
-                    <img ng-click="getMessages()" src="img/m.jpg" widht="70px" height="50px" />
-                    <span class="right-name"><strong><a ng-click="getMessages()">Ivan Petrov</a></strong></span>
-                    <hr>
-                </div>
-                <div>
-                    <img src="img/m.jpg" widht="70px" height="50px" />
-                    <span class="right-name"><strong><a>Ivan Petrov</a></strong></span>
-                    <hr>
-                </div>
+             
             </div>
 
         </div>
@@ -33,8 +20,8 @@
                 <div  id="conversetion-container">
                     <ul id="conversetion">
                         <li ng-repeat="msg in myData">
-                            
-                            <a><img ng-src="msg.photo" width='30px' height='40px' /><span class='from'><% msg.name %></span></a>
+                            <a><img ng-src="<% msg.avatar %>" width='30px' height='40px' /><span class='from'><% msg.name %></span></a>
+                            <p><% msg.msg %></p>
                         </li>
                     </ul>
                 </div>
@@ -42,7 +29,7 @@
                     <span id="notifyUser"></span>
                     <input type="hidden" id="user" value="Ivan2" />
                     <input type="hidden" id="recipient" value="ivan@ivanov@abv.bg" />
-                    <input type="hidden" id="email" value="stefn2@abv.bg" />
+                    <input type="hidden" id="email" value="stefaasd2@abv.bg" />
                     <input type="hidden" id="photo" value="upload/22/thumb_22072.jpg" />
                     <input id="m" class="form-control" onkeyup="notifyTyping();" autocomplete="off" /><button class="btn btn-primary btn-block" id="btnDel">Send</button>
                 </form>
@@ -70,7 +57,7 @@
             socket.on('chat message', function (from, msg,photo) {
                 $('#messages').append('<li>'+ '<a>'+ "<img width='30px' height='40px' src="+photo+ '/>'+'</a>' + "<span class='from'>"+ from+ '<span>'+'</li>');
                 $('#conversetion').append('<li>'+ '<a>'+ "<img width='30px' height='40px' src="+photo+ '/>'+'</a>' + "<span class='from'>"+ from+ '<span>'+'</li>');
-                $('#conversetion').append($('<li>').text(msg));
+                $('#conversetion').append($('<p>').text(msg));
                  
             });
 

@@ -1,5 +1,5 @@
 
-profileApp.controller('matchCtr', ['$scope', '$http','$interval', function ($scope, $http,$interval) {
+profileApp.controller('onlineCtr', ['$scope', '$http','$interval', function ($scope, $http,$interval) {
         
         
        $scope.updateStatus=function(){
@@ -15,10 +15,24 @@ profileApp.controller('matchCtr', ['$scope', '$http','$interval', function ($sco
             $http.get("getmatch").then(function (response) {
                 $scope.myMach = response.data;
                
-                console.log($scope.myMach);
               
             });    
         };
         $interval( function(){ $scope.getMatch(); }, 30001);
+
+    }]);
+
+
+
+profileApp.controller('matchAll', ['$scope', '$http','$interval', function ($scope, $http,$interval) {
+        
+       
+        $scope.getMatch = function () {           
+            $http.get("getall").then(function (response) {
+                $scope.myMach = response.data;
+
+            });    
+        };
+    
 
     }]);

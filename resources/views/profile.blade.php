@@ -32,7 +32,7 @@
                         <li class="small-text"><a href="#">Stefan</a></li>                        
                     </ul>                  
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="small-text"><a href="/match">Match 10</a></li>
+                        <li class="small-text"><a href="/match#all">Match 10</a></li>
                         <li class="small-text"><a href="#"><span class="glyphicon glyphicon-user"></span>  Logout</a> </li> 
                     </ul>
                 </div>

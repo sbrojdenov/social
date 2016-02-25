@@ -18,6 +18,7 @@ Route::get('/home','HomeController@profile');
 Route::post('/avatar/{id?}','MeController@upload');
 Route::get('/thumbs','MeController@images');
 Route::get('/profile','ProfileController@index');
+Route::get('/getall','MatchController@getAll');
 Route::get('/getmatch','MatchController@getmatch');
 Route::post('/create','HomeController@create');
 Route::get('/me','MeController@index');
@@ -35,10 +36,20 @@ Route::get('/mongodb', function()
     return($chat);
 });
 
-Route::get('/getmessage/{recepient}', function($recepient)
+Route::get('getmessage/{recepient}', function($recepient)
 { 
    //$email =\Auth::user()->email;
-   $users = \App\Chatmongodb::where('email', '=','stefn2@abv.bg')->where('recipient', '=', $recepient)->get();
+  
+   $users = \App\Chatmongodb::orderBy('created_at', 'asc')->where('email', '=','stefn2@abv.bg')->where('recipient', '=', $recepient)->get();
+   return $users;
+});
+
+Route::get('getmessage', function()
+{ 
+   //$email =\Auth::user()->email;
+  
+   $users = \App\Chatmongodb::groupBy('email')->where('email', '=','stefn2@abv.bg')->orderBy('created_at', 'asc')->get(['email','name','avatar','recipient']);
+   
    return $users;
 });
 

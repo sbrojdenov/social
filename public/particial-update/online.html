@@ -1,0 +1,13 @@
+<div ng-init="getMatch()">   
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#all">All</a></li>
+        <li ><a href="#online">Online</a></li>
+    </ul>
+
+    <ul class="list-group"  ng-repeat="mach in myMach">
+
+        <li class="list-group-item"><img ng-src="<%'upload/'+ mach.id+ '/'+ mach.avatar %>" widht="125px" height="135"/><span class="test"> <% mach.name%> <img src="img/green.png" widht="12px" height="12px"/></span><span class="bootom-list">write message</span></li>
+
+    </ul>
+
+</div>

@@ -129,9 +129,17 @@ profileApp.controller('photoCtrl', ['$scope', 'fileUpload', '$http', function ($
 
 
 profileApp.controller('messageCtr', ['$scope', '$http', function ($scope, $http) {
+        
+        $scope.allMessage=function(){
+             $http.get("getmessage").then(function (response) {
+                $scope.allMeesage = response.data;
+                 
+            });
+            
+        }
    
-        $scope.getMessages = function () {
-            $http.get("getmessage/ivan@ivanov@abv.bg").then(function (response) {
+        $scope.getMessages = function (email) {
+            $http.get("getmessage/"+email).then(function (response) {
                 $scope.myData = response.data;
                 console.log($scope.myData);
 
