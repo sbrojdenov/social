@@ -53,6 +53,16 @@ Route::get('getmessage', function()
    return $users;
 });
 
+Route::get('getauth', function()
+{ 
+   $user =\Auth::user();
+   
+   return $user;
+  
+
+});
+
+
 
 
 

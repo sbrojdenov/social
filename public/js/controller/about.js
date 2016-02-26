@@ -14,6 +14,32 @@ profileApp.directive('fileModel', ['$parse', function ($parse) {
         };
     }]);
 
+
+profileApp.directive('myTag', ['$http', function ($http) {
+        return {
+            restrict: 'E',
+            transclude: true,
+            replace: true,
+            scope: {
+                src: "="
+            },
+            templateUrl: 'tabs/authuser-directive.html',
+            controller: ['$scope', '$http', function ($scope, $http) {
+                    $scope.getAuth = function () {
+                        $http.get("getauth").then(function (response) {
+                            $scope.user = response.data;
+                            console.log($scope.user);
+                        });
+                    }
+                }],
+            link: function (scope) {
+                scope.getAuth();
+            }
+
+
+        }
+    }]);
+
 profileApp.service('fileUpload', ['$http', '$q', function ($http, $q) {
         var fileUpload = this;
         fileUpload.fileList = {};
@@ -51,7 +77,7 @@ profileApp.controller('myCtrl', ['$scope', 'fileUpload', '$location', '$rootScop
             var listener = $scope.$watch('file', function (newVal) {
                 if (newVal) {
                     $scope.file = newVal;
-                    var uploadUrl = "avatar";
+                    var uploadUrl = "avatar/0";
 
                     fileUpload.uploadFileToUrl($scope.file, uploadUrl).then(function (res) {
                         $scope.image = fileUpload.fileList.path;
@@ -129,20 +155,20 @@ profileApp.controller('photoCtrl', ['$scope', 'fileUpload', '$http', function ($
 
 
 profileApp.controller('messageCtr', ['$scope', '$http', function ($scope, $http) {
-        
-        $scope.allMessage=function(){
-             $http.get("getmessage").then(function (response) {
-                $scope.allMeesage = response.data;
-                 
-            });
-            
-        }
-   
-        $scope.getMessages = function (email) {
-            $http.get("getmessage/"+email).then(function (response) {
-                $scope.myData = response.data;
-                console.log($scope.myData);
 
+       
+
+        $scope.allMessage = function () {
+            $http.get("getmessage").then(function (response) {
+                $scope.allMeesage = response.data;
+
+            });
+        }
+
+        $scope.getMessages = function (email) {
+            $http.get("getmessage/" + email).then(function (response) {
+                $scope.myData = response.data;
+               
             });
         }
 
